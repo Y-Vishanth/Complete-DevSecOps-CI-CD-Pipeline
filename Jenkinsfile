@@ -6,6 +6,7 @@ pipeline {
   environment {
     SONAR_IP = '172.31.44.21'
     ECR_REGISTRY = '111194325104.dkr.ecr.ap-south-1.amazonaws.com'
+    IMAGE_REPO = "${ECR_REGISTRY}/devsecops-project"
   }
   stages {
     stage('Trivy FS Scan') {
@@ -26,7 +27,12 @@ pipeline {
     }
     stage('ECR Login') {
         steps {
-            aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin ${ECR_REGISTRY}
+            sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin ${ECR_REGISTRY}'
+        }
+    }
+    stage('Build Docker Image') {
+        steps {
+            sh 'export DOCKER_BUILDKIT=0 && docker build --platform linux/amd64 -t "$IMAGE_REPO:$BUILD_NUMBER" -t "$IMAGE_REPO:latest" .'
         }
     }
   }
