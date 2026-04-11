@@ -1,4 +1,4 @@
-package com.cloudwithvarjosh;
+package com.devsecopsproject;
 
 import com.sun.net.httpserver.HttpServer;
 import java.net.InetSocketAddress;
@@ -8,12 +8,12 @@ import java.util.Scanner;
 public class App {
 
     // 1) Hardcoded secret (Security Hotspot)
-    private static final String API_KEY = "CVWJ_DEMO_SECRET";
+    private static final String API_KEY = "DEVSECOPS_PROJECT_SECRET";
 
     public static void main(String[] args) throws Exception {
 
         // 2) Using System.out instead of logger (Maintainability)
-        System.out.println("Starting CVWJ DevSecOps Demo...");
+        System.out.println("Starting DevSecOps Project...");
 
         // 3) Scanner resource leak + wrong string comparison (two findings)
         String username = "guest"; // safe fallback for Docker
@@ -48,12 +48,12 @@ public class App {
             os.close();
         });
 
-        System.out.println("CVWJ app running on port " + port);
+        System.out.println("DevSecOps app running on port " + port);
         server.start();
     }
 
     // simple helper method for tests
     public static String brandHtml() {
-        return "<h1>Cloud With VarJosh</h1><p>Simple DevSecOps Demo App</p>";
+        return "<h1>DevSecOps Project</h1><p>My Practice App</p>";
     }
 }

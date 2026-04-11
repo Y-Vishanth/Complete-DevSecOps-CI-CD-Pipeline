@@ -1,4 +1,4 @@
-package com.cloudwithvarjosh;
+package com.devsecopsproject;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +9,7 @@ public class AppTest {
     void testBrandHtmlContainsBrand() {
         String h = App.brandHtml();
         assertNotNull(h);
-        assertTrue(h.contains("Cloud With VarJosh"));
+        assertTrue(h.contains("DevSecOps Project"));
     }
 
     @Test
